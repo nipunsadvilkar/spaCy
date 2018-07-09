@@ -77,6 +77,11 @@ def is_currency(text):
     return True
 
 
+def is_sent_split(text):
+    sent_split_chars = (':', '.', '\n')
+    return text in sent_split_chars
+
+
 def like_email(text):
     return bool(_like_email(text))
 
@@ -168,10 +173,11 @@ LEX_ATTRS = {
     attrs.IS_PUNCT: is_punct,
     attrs.IS_ASCII: is_ascii,
     attrs.SHAPE: word_shape,
-    attrs.IS_BRACKET:is_bracket,
+    attrs.IS_BRACKET: is_bracket,
     attrs.IS_QUOTE: is_quote,
     attrs.IS_LEFT_PUNCT: is_left_punct,
     attrs.IS_RIGHT_PUNCT: is_right_punct,
     attrs.IS_CURRENCY: is_currency,
+    attrs.IS_SENT_SPLIT: is_sent_split,
     attrs.LIKE_URL: like_url
 }
