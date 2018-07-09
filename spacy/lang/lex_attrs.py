@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 import unicodedata
+from ..lang.tokenizer_exceptions import emoticons
 import regex as re
 
 from .. import attrs
@@ -77,9 +78,8 @@ def is_currency(text):
     return True
 
 
-def is_sent_split(text):
-    sent_split_chars = (':', '.', '\n')
-    return text in sent_split_chars
+def is_emoji(text):
+    return text in emoticons
 
 
 def like_email(text):
@@ -178,6 +178,6 @@ LEX_ATTRS = {
     attrs.IS_LEFT_PUNCT: is_left_punct,
     attrs.IS_RIGHT_PUNCT: is_right_punct,
     attrs.IS_CURRENCY: is_currency,
-    attrs.IS_SENT_SPLIT: is_sent_split,
+    attrs.IS_EMOJI: is_emoji,
     attrs.LIKE_URL: like_url
 }

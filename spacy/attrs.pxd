@@ -19,7 +19,7 @@ cdef enum attr_id_t:
     IS_LEFT_PUNCT
     IS_RIGHT_PUNCT
     IS_CURRENCY
-    IS_SENT_SPLIT
+    IS_EMOJI
 
     FLAG20 = 20
     FLAG21
