@@ -1,10 +1,16 @@
 # coding: utf8
 from __future__ import unicode_literals
 
+import codecs
+import os.path as op
 import unicodedata
 import regex as re
 
 from .. import attrs
+
+with codecs.open(op.join(op.dirname(op.dirname(__file__)),
+                         'data', 'organisations_tok_list.txt'), encoding='utf-8') as org_f:
+    org_list = org_f.read().split('\n')[:-1]
 
 
 _like_email = re.compile(r'([a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+)').match
@@ -75,6 +81,10 @@ def is_currency(text):
         if unicodedata.category(char) != 'Sc':
             return False
     return True
+
+
+def is_org(text):
+    return text in org_list
 
 
 def like_email(text):
@@ -173,5 +183,6 @@ LEX_ATTRS = {
     attrs.IS_LEFT_PUNCT: is_left_punct,
     attrs.IS_RIGHT_PUNCT: is_right_punct,
     attrs.IS_CURRENCY: is_currency,
+    attrs.IS_ORG: is_org,
     attrs.LIKE_URL: like_url
 }
